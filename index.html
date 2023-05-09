@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/7.css">
+  <style>
+    body {
+      
+      overflow: hidden;
+      background: url(./wallpaper.png) no-repeat center center fixed; 
+      background-size: cover;
+      transition: filter 0.5s ease-in-out;
+      z-index: -1;
+    }
+    .icons {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      
+    }
+    
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
+      cursor: url(point3.png), pointer;
+    }
+    
+    .icon img {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .icon-label {
+      margin-top: 4px;
+      font-size: 12px;
+    }
+  </style>
+  <title>Windows XP Window</title>
+ 
+  <style>
+    .window {
+      width: 400px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+    }
+    .fade-out {
+  animation: fadeOut 1s forwards;
+}
+    .window .title-bar {
+      cursor: move;
+    }
+        .title-bar-text {
+      user-select: none; /* Make the title bar text not selectable */
+    }
+
+    .slider {
+      width: 150px !important;
+      margin: 20px;
+    }
+    @keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+  </style>
+  <script>
+window.onload = function() {
+  const windowElement = document.querySelector('.window');
+  //const settingsWindowElement = document.querySelector('#w-settings');
+  //const baWindowElement = document.querySelector('#w-ba');
+  const testWindowElement = document.querySelector('#w-test');
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+  
+  function handleMouseDown(e, element) {
+    isDragging = true;
+    offsetX = e.clientX - element.offsetLeft;
+    offsetY = e.clientY - element.offsetTop;
+  }
+  
+  function handleMouseMove(e, element) {
+    if (isDragging) {
+      const x = e.clientX - offsetX;
+      const y = e.clientY - offsetY;
+      element.style.left = x + 'px';
+      element.style.top = y + 'px';
+    }
+  }
+  
+  function handleMouseUp() {
+    isDragging = false;
+  }
+  
+  windowElement.querySelector('.title-bar').addEventListener('mousedown', function(e) {
+    handleMouseDown(e, windowElement);
+  });
+  
+  windowElement.addEventListener('mousemove', function(e) {
+    handleMouseMove(e, windowElement);
+  });
+  
+  windowElement.addEventListener('mouseup', handleMouseUp);
+  /*
+  settingsWindowElement.querySelector('.title-bar').addEventListener('mousedown', function(e) {
+    handleMouseDown(e, settingsWindowElement);
+  });
+  
+  settingsWindowElement.addEventListener('mousemove', function(e) {
+    handleMouseMove(e, settingsWindowElement);
+  });
+  
+  settingsWindowElement.addEventListener('mouseup', handleMouseUp);
+
+  baWindowElement.querySelector('.title-bar').addEventListener('mousedown', function(e) {
+    handleMouseDown(e, baWindowElement);
+  });
+  
+  baWindowElement.addEventListener('mousemove', function(e) {
+    handleMouseMove(e, baWindowElement);
+  });
+  
+  baWindowElement.addEventListener('mouseup', handleMouseUp);
+*/
+
+  testWindowElement.querySelector('.title-bar').addEventListener('mousedown', function(e) {
+    handleMouseDown(e, testWindowElement);
+  });
+  
+  testWindowElement.addEventListener('mousemove', function(e) {
+    handleMouseMove(e, testWindowElement);
+  });
+  
+  testWindowElement.addEventListener('mouseup', handleMouseUp);
+};
+
+  </script>
+</head>
+<body style="background-color: #000000;">
+  <div class="window glass active" id="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Coming soon...</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" id="w-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space" id="nwindow">
+        <p>Neurosama.fun is in construction. <br> By default, you will be redirected to vedal987 in <b><time id="time">10</time></b> seconds...</p>
+    </div>
+  </div>
+
+  <div class="window glass active" id="w-test" style="display:none;">
+    <div class="title-bar">
+      <div class="title-bar-text">test</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" ></button>
+      </div>
+    </div>
+    <div class="window-body has-space" id="nwindow">
+        <p>test</p>
+    </div>
+  </div>
+
+
+     
+  <script>
+    var count = 10;
+    setInterval(function () {count--; document.getElementById("time").innerHTML = count;if (count < 1) {var windowElement = document.getElementById('window');windowElement.classList.add('fade-out');setTimeout(function() {windowElement.parentNode.removeChild(windowElement);}, 1000);window.location.replace("https://twitch.tv/vedal987");}
+}, 1000);
+
+document.getElementById("w-close").addEventListener("click", function(){ var windowElement = document.getElementById('window');windowElement.classList.add('fade-out');setTimeout(function() {windowElement.parentNode.removeChild(windowElement);}, 1000); });
+
+
+  
+  </script>
+</body>
+</html>
